@@ -1,0 +1,25 @@
+{
+    "storeName": "My Ceramic Store",
+    "storeAddress": "123 Main Street, Anytown USA",
+    "storePhone": "555-555-5555",
+    "storeEmail": "info@myceramicstore.com",
+    "storeDescription": "A curated collection of handmade ceramic mugs, flasks, and platters.",
+    "storeLogo": "assets/storelogo.png",
+    "socialMedia": {
+        "Facebook": "https://www.facebook.com/myceramicstore",
+        "Instagram": "https://www.instagram.com/myceramicstore",
+        "Twitter": "https://twitter.com/myceramicstore"
+    },
+    "businessHours": {
+        "Monday": "9:00 AM - 5:00 PM",
+        "Tuesday": "9:00 AM - 5:00 PM",
+        "Wednesday": "9:00 AM - 5:00 PM",
+        "Thursday": "9:00 AM - 5:00 PM",
+        "Friday": "9:00 AM - 5:00 PM",
+        "Saturday": "Closed",
+        "Sunday": "Closed"
+    },
+    "paymentMethods": ["Visa", "Mastercard", "American Express", "PayPal"],
+    "shippingPolicy": "We offer free shipping on all orders over $50. All other orders have a flat rate shipping fee of $5.",
+    "returnPolicy": "If you are not satisfied with your purchase, you may return it within 14 days for a full refund or exchange."
+}
