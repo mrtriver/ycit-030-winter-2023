@@ -29,10 +29,14 @@ function ProductCard(props) {
 
     return (
         <div className="ProductCard">
-            <img src={imageUrl} />
-            <h3>{name}</h3>
-            <p>{description}</p>
-            <p>Price: {price}</p>
+            <div className="image-container">
+                <img src={imageUrl} />
+            </div>
+            <div className="ProductInfo">
+                <h3>{name}</h3>
+                <p>{description}</p>
+                <p>Price: {price}</p>
+            </div>
             <button className="buy-button">Buy</button>
         </div>
     )
