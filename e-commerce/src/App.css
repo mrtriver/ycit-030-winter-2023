@@ -39,6 +39,8 @@ h2 {
     box-shadow: 2px 2px 5px #ddd;
 
     gap: 5px;
+
+    padding: 0.5rem;
 }
 
 .ProductInfo h3,
@@ -49,8 +51,8 @@ p {
 
 .ProductCard .image-container {
     height: 150px;
-
     display: flex;
+    justify-content: center;
 }
 
 .ProductCard img {
