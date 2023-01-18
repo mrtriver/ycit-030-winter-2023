@@ -9,24 +9,14 @@ export function App() {
     const [currentView, setCurrentView] = useState("product-list-view")
     const [selectedProductId, setSelectedProductId] = useState(null)
 
-    function productSelected(id) {
-        console.log("ID", id)
-        setSelectedProductId(id)
-        setCurrentView("single-product-view")
-    }
-
-    function productUnselected() {
-        setSelectedProductId(null)
-        setCurrentView("product-list-view")
-    }
-
     let renderedView = null
 
     if (currentView === "product-list-view") {
         renderedView = (
             <ProductList
                 ceramicMugsAndFlasks={ceramicMugsAndFlasks}
-                productSelected={(id) => productSelected(id)}
+                setCurrentView={setCurrentView}
+                setSelectedProductId={setSelectedProductId}
             />
         )
     } else if (currentView === "single-product-view") {
@@ -35,10 +25,7 @@ export function App() {
         )
 
         renderedView = (
-            <ProductCard
-                handleClick={() => productUnselected()}
-                {...foundProduct}
-            />
+            <ProductCard setCurrentView={setCurrentView} {...foundProduct} />
         )
     }
 
@@ -61,7 +48,8 @@ function ProductList(props) {
                 description={item.description}
                 price={item.price}
                 imageUrl={item.imageUrl}
-                handleClick={() => props.productSelected(item.id)}
+                setCurrentView={props.setCurrentView}
+                setSelectedProductId={props.setSelectedProductId}
             />
         )
     })
@@ -72,7 +60,29 @@ function ProductList(props) {
 function ProductCard(props) {
     return (
         <div className="ProductCard">
-            <div onClick={props.handleClick}>
+            <div
+                onClick={() => {
+                    // setCurrentView("single-product-view")
+                    props.setCurrentView((state) => {
+                        if (state === "product-list-view") {
+                            return "single-product-view"
+                        } else {
+                            return "product-list-view"
+                        }
+
+                        // This is the same as the code above
+                        // state === "single-product-view"
+                        //     ? "product-list-view"
+                        //     : "single-product-view"
+                    })
+
+                    if (props.setSelectedProductId) {
+                        props.setSelectedProductId(props.id)
+                    }
+
+                    // setSelectedProductId && setSelectedProductId(id) // same as the code right above
+                }}
+            >
                 <div className="image-container">
                     <img src={props.imageUrl} />
                 </div>

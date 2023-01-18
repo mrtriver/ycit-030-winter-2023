@@ -5,33 +5,37 @@ import "./App.css"
 import { storeName, storeDescription } from "./assets/store-info.json"
 import ceramicMugsAndFlasks from "./assets/products.json"
 
+const initialState = {
+    currentView: "product-list-view",
+    selectedProductId: null,
+}
+
 export function App() {
-    const [currentView, setCurrentView] = useState("product-list-view")
-    const [selectedProductId, setSelectedProductId] = useState(null)
+    const [state, setState] = useState(initialState)
 
     function productSelected(id) {
-        console.log("ID", id)
-        setSelectedProductId(id)
-        setCurrentView("single-product-view")
+        setState({
+            currentView: "single-product-view",
+            selectedProductId: id,
+        })
     }
 
     function productUnselected() {
-        setSelectedProductId(null)
-        setCurrentView("product-list-view")
+        setState(initialState)
     }
 
     let renderedView = null
 
-    if (currentView === "product-list-view") {
+    if (state.currentView === "product-list-view") {
         renderedView = (
             <ProductList
                 ceramicMugsAndFlasks={ceramicMugsAndFlasks}
                 productSelected={(id) => productSelected(id)}
             />
         )
-    } else if (currentView === "single-product-view") {
+    } else if (state.currentView === "single-product-view") {
         const foundProduct = ceramicMugsAndFlasks.find(
-            (el) => el.id === selectedProductId
+            (el) => el.id === state.selectedProductId
         )
 
         renderedView = (
