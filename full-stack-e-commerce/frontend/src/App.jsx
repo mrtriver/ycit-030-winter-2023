@@ -1,107 +1,58 @@
-import { useState, useEffect } from "react"
-
 import "./App.css"
 
 import { storeName, storeDescription } from "./assets/store-info.json"
+
+import { useGetProducts } from "./App.useGetProducts"
+import { useGetCurrentView } from "./App.useGetCurrentView"
+
+import { Header } from "./Header"
+import { HeaderProfile } from "./HeaderProfile"
+import { ProductList } from "./ProductList"
+import { ProductCard } from "./ProductCard"
 
 // moved to the server
 // import ceramicMugsAndFlasks from "./assets/products.json"
 
 export function App() {
-    const [currentView, setCurrentView] = useState("product-list-view")
-    const [selectedProductId, setSelectedProductId] = useState(null)
-    const [products, setProducts] = useState([])
+    const products = useGetProducts()
 
-    // console.log("products", products)
-
-    useEffect(() => {
-        fetch("http://localhost:3000/products")
-            .then((res) => {
-                return res.json()
-            })
-            .then((data) => {
-                // console.log("data", data)
-                setProducts(data)
-            })
-    }, [])
-
-    function productSelected(id) {
-        console.log("ID", id)
-        setSelectedProductId(id)
-        setCurrentView("single-product-view")
-    }
-
-    function productUnselected() {
-        setSelectedProductId(null)
-        setCurrentView("product-list-view")
-    }
+    const {
+        currentView,
+        selectedProductId,
+        productSelected,
+        productUnselected,
+    } = useGetCurrentView()
 
     let renderedView = null
+    switch (currentView) {
+        case "product-list-view":
+            renderedView = (
+                <ProductList
+                    products={products}
+                    productSelected={(id) => productSelected(id)}
+                />
+            )
+            break
+        case "single-product-view":
+            const foundProduct = products.find(
+                (el) => el.id === selectedProductId
+            )
 
-    if (currentView === "product-list-view") {
-        renderedView = (
-            <ProductList
-                products={products}
-                productSelected={(id) => productSelected(id)}
-            />
-        )
-    } else if (currentView === "single-product-view") {
-        const foundProduct = products.find((el) => el.id === selectedProductId)
-
-        renderedView = (
-            <ProductCard
-                handleClick={() => productUnselected()}
-                {...foundProduct}
-            />
-        )
+            renderedView = (
+                <ProductCard
+                    handleClick={() => productUnselected()}
+                    {...foundProduct}
+                />
+            )
+            break
     }
 
     return (
         <div className="App">
-            <h1>{storeName}</h1>
-            <h2>{storeDescription}</h2>
+            <Header storeName={storeName} storeDescription={storeDescription}>
+                <HeaderProfile />
+            </Header>
             {renderedView}
-        </div>
-    )
-}
-
-function ProductList(props) {
-    const items = props.products.map((item) => {
-        return (
-            <ProductCard
-                id={item.id}
-                key={`product-cart-${item.id}`}
-                name={item.name}
-                description={item.description}
-                price={item.price}
-                imageUrl={item.imageUrl}
-                handleClick={() => props.productSelected(item.id)}
-            />
-        )
-    })
-
-    return <div className="ProductList">{items}</div>
-}
-
-function ProductCard(props) {
-    return (
-        <div className="ProductCard">
-            <div onClick={props.handleClick}>
-                <div className="image-container">
-                    <img src={props.imageUrl} />
-                </div>
-                <div className="ProductInfo">
-                    <h3>{props.name}</h3>
-                    <p>{props.description}</p>
-                    <p>Price: {props.price}</p>
-                </div>
-            </div>
-            <button
-                className="buy-button"
-                onClick={() => alert("Button clicked")}
-            >
-                Buy
-            </button>
         </div>
     )
 }
