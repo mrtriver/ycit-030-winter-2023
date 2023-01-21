@@ -1,27 +1,50 @@
-import "./App.css"
+import { useState, useEffect } from "react"
 
 import { storeName, storeDescription } from "./assets/store-info.json"
-
-import { useGetProducts } from "./App.useGetProducts"
-import { useGetCurrentView } from "./App.useGetCurrentView"
 
 import { Header } from "./Header"
 import { HeaderProfile } from "./HeaderProfile"
 import { ProductList } from "./ProductList"
 import { ProductCard } from "./ProductCard"
 
+import "./App.css"
+
 // moved to the server
 // import ceramicMugsAndFlasks from "./assets/products.json"
 
 export function App() {
-    const products = useGetProducts()
+    const [selectedCategory, setSelectedCategory] = useState("")
 
-    const {
-        currentView,
-        selectedProductId,
-        productSelected,
-        productUnselected,
-    } = useGetCurrentView()
+    console.log("selectedCategory", selectedCategory)
+
+    const [currentView, setCurrentView] = useState("product-list-view")
+    const [selectedProductId, setSelectedProductId] = useState(null)
+
+    function productSelected(id) {
+        console.log("ID", id)
+        setSelectedProductId(id)
+        setCurrentView("single-product-view")
+    }
+
+    function productUnselected() {
+        setSelectedProductId(null)
+        setCurrentView("product-list-view")
+    }
+
+    const [products, setProducts] = useState([])
+
+    // console.log("products", products)
+
+    useEffect(() => {
+        fetch(`http://localhost:3000/products?category=${selectedCategory}`)
+            .then((res) => {
+                return res.json()
+            })
+            .then((data) => {
+                // console.log("data", data)
+                setProducts(data)
+            })
+    }, [selectedCategory])
 
     let renderedView = null
     switch (currentView) {
@@ -30,6 +53,8 @@ export function App() {
                 <ProductList
                     products={products}
                     productSelected={(id) => productSelected(id)}
+                    selectedCategory={selectedCategory}
+                    setSelectedCategory={setSelectedCategory}
                 />
             )
             break

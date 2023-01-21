@@ -1,0 +1,26 @@
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
+}
+
+@media (max-width: 600px) {
+    .grid-container {
+        grid-template-columns: repeat(1, 1fr);
+        max-width: 300px;
+        align-self: center;
+    }
+}
+
+.select-container {
+    text-align: center;
+}
+
+.select-container label {
+    margin-right: 1rem;
+}
+
+.select-container select {
+    padding: 1rem 2rem;
+    margin-bottom: 0.5rem;
+}

@@ -1,3 +1,5 @@
+import "./ProductCard.css"
+
 export function ProductCard(props) {
     return (
         <div className="ProductCard">
