@@ -1,43 +1,54 @@
-import { useState, useEffect } from "react"
+import { useState } from "react"
+
+import { useQuery } from "react-query"
 
 import { ProductCard } from "./ProductCard"
 
 import "./ProductList.css"
 
 export function ProductList(props) {
-    const [categories, setCategories] = useState([])
+    // const [categories, setCategories] = useState([])
 
     // console.log("categories", categories)
 
-    useEffect(() => {
-        fetch("http://localhost:3000/categories")
-            .then((res) => {
-                return res.json()
-            })
-            .then((data) => {
-                setCategories(data)
-            })
-    }, [])
+    // useEffect(() => {
+    //     fetch("http://localhost:3000/categories")
+    //         .then((res) => {
+    //             return res.json()
+    //         })
+    //         .then((data) => {
+    //             setCategories(data)
+    //         })
+    // }, [])
 
-    const items = props.products
-        // .filter(
-        //     (item) =>
-        //         !props.selectedCategory ||
-        //         item.category === props.selectedCategory
-        // )
-        .map((item) => {
-            return (
-                <ProductCard
-                    id={item.id}
-                    key={`product-cart-${item.id}`}
-                    name={item.name}
-                    description={item.description}
-                    price={item.price}
-                    imageUrl={item.imageUrl}
-                    handleClick={() => props.productSelected(item.id)}
-                />
-            )
-        })
+    // use useQuery to do the same thing as the code ABOVE, but with caching!
+
+    const {
+        isLoading,
+        error,
+        data: categories,
+    } = useQuery("get-categories", () => {
+        return fetch("http://localhost:3000/categories").then((res) =>
+            res.json()
+        )
+    })
+
+    console.log("TACO", props)
+    // cannot read properties of undefined (reading 'map')
+
+    const items = props.products?.map((item) => {
+        return (
+            <ProductCard
+                id={item.id}
+                key={`product-cart-${item.id}`}
+                name={item.name}
+                description={item.description}
+                price={item.price}
+                imageUrl={item.imageUrl}
+                handleClick={() => props.productSelected(item.id)}
+            />
+        )
+    })
 
     return (
         <div className="ProductList">
@@ -51,7 +62,7 @@ export function ProductList(props) {
                     onChange={(e) => props.setSelectedCategory(e.target.value)}
                 >
                     <option value={""}></option>
-                    {categories.map((category) => {
+                    {categories?.map((category) => {
                         return (
                             <option
                                 key={`product-list-category-${category}`}

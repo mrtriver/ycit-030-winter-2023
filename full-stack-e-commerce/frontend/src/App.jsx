@@ -1,4 +1,6 @@
-import { useState, useEffect } from "react"
+import { useState } from "react"
+
+import { useQuery } from "react-query"
 
 import { storeName, storeDescription } from "./assets/store-info.json"
 
@@ -12,13 +14,12 @@ import "./App.css"
 // moved to the server
 // import ceramicMugsAndFlasks from "./assets/products.json"
 
-export function App() {
+export function App(props) {
+    const [currentView, setCurrentView] = useState("product-list-view")
+    const [selectedProductId, setSelectedProductId] = useState(null)
     const [selectedCategory, setSelectedCategory] = useState("")
 
     console.log("selectedCategory", selectedCategory)
-
-    const [currentView, setCurrentView] = useState("product-list-view")
-    const [selectedProductId, setSelectedProductId] = useState(null)
 
     function productSelected(id) {
         console.log("ID", id)
@@ -31,20 +32,31 @@ export function App() {
         setCurrentView("product-list-view")
     }
 
-    const [products, setProducts] = useState([])
-
     // console.log("products", products)
 
-    useEffect(() => {
-        fetch(`http://localhost:3000/products?category=${selectedCategory}`)
-            .then((res) => {
-                return res.json()
-            })
-            .then((data) => {
-                // console.log("data", data)
-                setProducts(data)
-            })
-    }, [selectedCategory])
+    // useEffect(() => {
+    //     fetch(`http://localhost:3000/products?category=${selectedCategory}`)
+    //         .then((res) => {
+    //             return res.json()
+    //         })
+    //         .then((data) => {
+    //             // console.log("data", data)
+    //             setProducts(data)
+    //         })
+    // }, [selectedCategory])
+
+    // This is basically the same as the code commented out ABOVE, but with caching (cache lives for 5 minutes before application will perform a new fetch)
+    const {
+        isLoading,
+        error,
+        data: products,
+    } = useQuery(["get-products-by-category", selectedCategory], () => {
+        return fetch(
+            `http://localhost:3000/products?category=${selectedCategory}`
+        ).then((res) => res.json())
+    })
+
+    console.log("SMOKEY", { isLoading, error, products })
 
     let renderedView = null
     switch (currentView) {
