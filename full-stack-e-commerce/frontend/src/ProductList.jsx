@@ -1,5 +1,7 @@
 import { useState } from "react"
 
+import { useNavigate } from "react-router-dom"
+
 import { useQuery } from "react-query"
 
 import { ProductCard } from "./ProductCard"
@@ -7,6 +9,8 @@ import { ProductCard } from "./ProductCard"
 import "./ProductList.css"
 
 export function ProductList(props) {
+    const navigate = useNavigate()
+
     // const [categories, setCategories] = useState([])
 
     // console.log("categories", categories)
@@ -36,16 +40,16 @@ export function ProductList(props) {
     console.log("TACO", props)
     // cannot read properties of undefined (reading 'map')
 
-    const items = props.products?.map((item) => {
+    const items = props.products?.map((product) => {
         return (
             <ProductCard
-                id={item.id}
-                key={`product-cart-${item.id}`}
-                name={item.name}
-                description={item.description}
-                price={item.price}
-                imageUrl={item.imageUrl}
-                handleClick={() => props.productSelected(item.id)}
+                key={`product-cart-${product.id}`}
+                product={product}
+                handleClick={() => {
+                    //  props.productSelected(item.id)
+                    console.log("HI", product.id)
+                    navigate(`/products/${product.id}`)
+                }}
             />
         )
     })
