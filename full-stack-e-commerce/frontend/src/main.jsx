@@ -1,18 +1,27 @@
 import React from "react"
 import ReactDOM from "react-dom/client"
+import { BrowserRouter } from "react-router-dom"
+
+import { QueryClient, QueryClientProvider } from "react-query"
+
 import { App } from "./App"
 import "./index.css"
 
-// fetch("http://127.0.0.1:3000/test")
-//     .then((res) => {
-//         return res.text()
-//     })
-//     .then((result) => {
-//         console.log("result", result)
-//     })
+const queryClient = new QueryClient({
+    defaultOptions: {
+        queries: {
+            staleTime: 1000 * 60 * 5,
+            refetchOnMount: false,
+        },
+    },
+})
 
 ReactDOM.createRoot(document.getElementById("root")).render(
     <React.StrictMode>
-        <App />
+        <QueryClientProvider client={queryClient}>
+            <BrowserRouter>
+                <App />
+            </BrowserRouter>
+        </QueryClientProvider>
     </React.StrictMode>
 )

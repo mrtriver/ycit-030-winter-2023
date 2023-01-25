@@ -2,6 +2,7 @@
     {
         "id": 1,
         "name": "Chuck",
+        "category": "ceramics",
         "price": 20.99,
         "description": "A handmade ceramic mug featuring a unique design.",
         "imageUrl": "/images/Chuck.jpg"
@@ -9,6 +10,7 @@
     {
         "id": 2,
         "name": "Flaskie",
+        "category": "ceramics",
         "price": 15.99,
         "description": "A handmade ceramic flask with a sleek and modern design.",
         "imageUrl": "/images/Flaskie.jpg"
@@ -16,6 +18,7 @@
     {
         "id": 3,
         "name": "MacSmithPlatter",
+        "category": "ceramics",
         "price": 35.99,
         "description": "A handmade ceramic platter with a unique design.",
         "imageUrl": "/images/MacSmithPlatter.jpg"
@@ -23,6 +26,7 @@
     {
         "id": 4,
         "name": "birdPlatter",
+        "category": "ceramics",
         "price": 30.99,
         "description": "A handmade ceramic platter featuring a bird design.",
         "imageUrl": "/images/birdPlatter.jpg"
@@ -30,6 +34,7 @@
     {
         "id": 5,
         "name": "celadon",
+        "category": "ceramics",
         "price": 25.99,
         "description": "A handmade ceramic mug in a celadon glaze.",
         "imageUrl": "/images/celadon.jpg"
@@ -37,6 +42,7 @@
     {
         "id": 6,
         "name": "dots",
+        "category": "ceramics",
         "price": 22.99,
         "description": "A handmade ceramic mug with a dot design.",
         "imageUrl": "/images/dots.jpg"
@@ -44,6 +50,7 @@
     {
         "id": 7,
         "name": "dougMug",
+        "category": "ceramics",
         "price": 18.99,
         "description": "A handmade ceramic mug with a unique design.",
         "imageUrl": "/images/dougMug.jpg"
@@ -51,6 +58,7 @@
     {
         "id": 8,
         "name": "drip",
+        "category": "ceramics",
         "price": 19.99,
         "description": "A handmade ceramic mug with a drip design.",
         "imageUrl": "/images/drip.jpg"
@@ -58,6 +66,7 @@
     {
         "id": 9,
         "name": "eyeFlask",
+        "category": "ceramics",
         "price": 17.99,
         "description": "A handmade ceramic flask with an eye design.",
         "imageUrl": "/images/eyeFlask.jpg"
@@ -65,6 +74,7 @@
     {
         "id": 10,
         "name": "greenheckPlatter",
+        "category": "ceramics",
         "price": 32.99,
         "description": "A handmade ceramic platter with a unique design.",
         "imageUrl": "/images/greenheckPlatter.jpg"
@@ -72,6 +82,7 @@
     {
         "id": 11,
         "name": "hands",
+        "category": "ceramics",
         "price": 24.99,
         "description": "A handmade ceramic mug with a hand design.",
         "imageUrl": "/images/hands.jpg"
@@ -79,6 +90,7 @@
     {
         "id": 12,
         "name": "longcup",
+        "category": "ceramics",
         "price": 21.99,
         "description": "A handmade ceramic mug in a long design.",
         "imageUrl": "/images/longcup.jpg"
@@ -86,6 +98,7 @@
     {
         "id": 13,
         "name": "longflask",
+        "category": "ceramics",
         "price": 16.99,
         "description": "A handmade ceramic flask in a long design.",
         "imageUrl": "/images/longflask.jpg"
@@ -93,6 +106,7 @@
     {
         "id": 14,
         "name": "lyon",
+        "category": "ceramics",
         "price": 23.99,
         "description": "A handmade ceramic mug with a unique design.",
         "imageUrl": "/images/lyon.jpg"
@@ -100,6 +114,7 @@
     {
         "id": 15,
         "name": "martyPlatter",
+        "category": "ceramics",
         "price": 33.99,
         "description": "A handmade ceramic platter with a unique design.",
         "imageUrl": "/images/martyPlatter.jpg"
@@ -107,6 +122,7 @@
     {
         "id": 16,
         "name": "shell",
+        "category": "ceramics",
         "price": 29.99,
         "description": "A handmade ceramic mug with a shell design.",
         "imageUrl": "/images/shell.jpg"
@@ -114,8 +130,49 @@
     {
         "id": 17,
         "name": "swirlyMug",
+        "category": "ceramics",
         "price": 19.99,
         "description": "A handmade ceramic mug with a swirly design.",
         "imageUrl": "/images/swirlyMug.jpg"
+    },
+    {
+        "id": 18,
+        "name": "Colorful Necklace",
+        "category": "crafts",
+        "price": 24.99,
+        "description": "A handmade necklace with a colorful design.",
+        "imageUrl": "/images/colorful-necklace.jpeg"
+    },
+    {
+        "id": 19,
+        "name": "Colorful Bracelet",
+        "category": "crafts",
+        "price": 14.99,
+        "description": "A handmade bracelet with a colorful design.",
+        "imageUrl": "/images/colorful-bracelet.jpeg"
+    },
+    {
+        "id": 20,
+        "name": "Green Necklace",
+        "category": "crafts",
+        "price": 29.99,
+        "description": "A handmade necklace with a green design.",
+        "imageUrl": "/images/green-necklace.jpeg"
+    },
+    {
+        "id": 21,
+        "name": "Bracelet",
+        "category": "crafts",
+        "price": 19.99,
+        "description": "A handmade bracelet.",
+        "imageUrl": "/images/bracelet.jpeg"
+    },
+    {
+        "id": 22,
+        "name": "Ocean Sun Necklace",
+        "category": "crafts",
+        "price": 34.99,
+        "description": "A handmade necklace with an ocean sun design.",
+        "imageUrl": "/images/ocean-sun-necklace.jpeg"
     }
 ]

@@ -1,0 +1,39 @@
+.ProductCard {
+    display: flex;
+    flex-direction: column;
+
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 2px 2px 5px #ddd;
+
+    gap: 5px;
+
+    padding: 0.5rem;
+}
+
+.ProductInfo h3,
+p {
+    padding: 0.25rem;
+    padding-left: 0.5rem;
+}
+
+.ProductCard .image-container {
+    height: 150px;
+    display: flex;
+    justify-content: center;
+}
+
+.ProductCard img {
+    max-width: 100%;
+    object-fit: contain;
+    box-sizing: border-box;
+    /* border: 2px solid #ddd; */
+    border-radius: 10px;
+    padding: 5px;
+}
+
+.buy-button {
+    margin-top: auto;
+    height: 2rem;
+    border-radius: 10px;
+}
